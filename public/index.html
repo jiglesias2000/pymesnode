@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pymes 2021</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/svgs/solid/industry.svg"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="estilos.css">
+  </head>
+
+  <body>
+    <div class="divBody">
+
+    <div class="tituloPagina">Articulos Familias</div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <table
+            class="table table-hover table-sm table-bordered table-striped"
+          >
+            <thead>
+              <tr>
+                <th class="text-center">IdArticuloFamilia</th>
+                <th class="text-center">Nombre</th>
+              </tr>
+            </thead>
+            <tbody id="bodyTabla">
+              <!-- <tr>
+                <td>id</td>
+                <td>nombre</td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </div>
+    </div>
+    <script>
+        async function cargarTabla(){
+            
+            const response = await fetch('/api/articulosfamilias');
+            const items = await response.json();
+            console.log(items);
+
+            let body = '';
+            items.forEach(item => {
+                body += 
+                `<tr>
+                <td>${item.IdArticuloFamilia}</td>
+                <td>${item.Nombre}</td>
+              </tr>`
+            });
+
+            let bodyTabla = document.getElementById("bodyTabla");
+            bodyTabla.innerHTML = body;
+
+        }
+
+        document.body.onload = cargarTabla;
+
+    </script>
+  </body>
+</html>
