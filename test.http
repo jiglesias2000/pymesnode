@@ -1,0 +1,9 @@
+http://localhost:5000/articulosfamilias
+###
+
+http://localhost:5000/articulos
+####
+
+http://localhost:5000/articulos/108
+####
+delete http://localhost:5000/articulos/108
